@@ -1,9 +1,14 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class display {
     
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
 
+        FileWriter fileWriter = new FileWriter("savedata.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
         Scanner scanner = new Scanner(System.in);
         car car = new car();
 
@@ -30,10 +35,15 @@ public class display {
                     String color = scanner.next();
                     car.setColor(color);
 
-                    System.out.println("Cadastro concluído com sucesso");
+                    System.out.print("insira o ano do carro: ");
+                    String year = scanner.next();
+                    car.setYear(year);
+
+                    printWriter.println(car.getBrand() + " " + car.getModel() + "de cor " + car.getColor() + ",ano " + car.getYear());
+                    System.out.println("Cadastro concluído com sucesso\n");
                 break;
                 case 2:
-                    System.out.print(car.getBrand() + car.getModel() + car.getColor());
+                   
                 break;
 
                 case 3:
@@ -46,5 +56,6 @@ public class display {
             }
         }
         scanner.close();
+        printWriter.close();
     }
 }
